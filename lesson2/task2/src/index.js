@@ -24,6 +24,5 @@ store.subscribe(() => {
     const state = store.getState();
     const strOne = state.history.map((el) => {return el === 1 ? '+1' : '-1'})
     const currentValue = state.history.reduce((acc, value) => acc += value, 0);
-    const historyString = state.history.join(' ');
-    resultBtn.textContent = state.history.length === 0 ? '' : `${strOne} = ${currentValue}`;
+    resultBtn.textContent = state.history.length === 0 ? '' : `${strOne.join(' ')} = ${currentValue}`;
 })
