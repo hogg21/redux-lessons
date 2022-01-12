@@ -8,7 +8,7 @@ export const counterReducer = (state = intialState, action) => {
       return {
         ...state,
 
-        usersList: state.usersList.concat(action.user),
+        usersList: state.usersList.concat(action.userData),
       };
     case DELETE:
       return {
