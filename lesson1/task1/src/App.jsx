@@ -4,7 +4,7 @@ import {themes, themeContent} from './themes-context.js'
 
 class App extends React.Component {
     state = {
-        theme: themes.light
+        theme: themes.dark
     }
     toggleTheme = () => {
         const newTheme = this.state.theme === themes.dark ? themes.light : themes.dark;
