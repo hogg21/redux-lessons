@@ -21,8 +21,10 @@ decrementBtn.addEventListener('click', onDecrement);
 resetBtn.addEventListener('click', onReset);
 
 store.subscribe(() => {
-    const state = store.getState();
-    const strOne = state.history.map((el) => {return el === 1 ? '+1' : '-1'})
-    const currentValue = state.history.reduce((acc, value) => acc += value, 0);
-    resultBtn.textContent = state.history.length === 0 ? '' : `${strOne.join(' ')} = ${currentValue}`;
+    const state = store.getState().history.map((el) => {
+        return el === 1 ? "+1" : "-1";
+      });
+      const itog = store.getState().history.reduce((acc, el) => acc + el, 0);
+      resultElem.textContent =
+        state.length === 0 ? "" : `${state.join("")} = ${itog}`;
 })
