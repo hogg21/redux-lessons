@@ -12,20 +12,18 @@ export const decrement = () => {
         type: decrementActionCreator
     }
 }
-const initialState = {
-    value: 0
-}
-export const counterReducer = (state = initialState, action) => {
+
+export const counterReducer = (state = 0, action) => {
     switch (action.type) {
         case incrementActionCreator:
-            return state.value + 1;
+            return state + 1;
         case decrementActionCreator:
-            return state.value - 1;
+            return state - 1;
         default:
-            return state.value;
+            return state;
     }
 }
-const store = createStore(counterReducer);
+export const store = createStore(counterReducer);
 // store.dispatch(increment());
 // store.dispatch(increment());
 // store.dispatch(increment());
