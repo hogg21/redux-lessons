@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 
-const incrementActionCreator = 'COUNTER/INCREMENT';
-const decrementActionCreator = 'COUNTER/DECREMENT';
+export const incrementActionCreator = 'COUNTER/INCREMENT';
+export const decrementActionCreator = 'COUNTER/DECREMENT';
 export const increment = () => {
     return {
         type: incrementActionCreator
@@ -26,8 +26,8 @@ export const counterReducer = (state = initialState, action) => {
     }
 }
 const store = createStore(counterReducer);
-store.dispatch(increment());
-store.dispatch(increment());
-store.dispatch(increment());
-store.dispatch(decrement());
-console.log(store.getState());
+// store.dispatch(increment());
+// store.dispatch(increment());
+// store.dispatch(increment());
+// store.dispatch(decrement());
+// console.log(store.getState());
