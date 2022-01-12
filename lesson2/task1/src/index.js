@@ -12,14 +12,17 @@ export const decrement = () => {
         type: decrementActionCreator
     }
 }
-export const counterReducer = (state = 0, action) => {
+const initialState = {
+    value: 0
+}
+export const counterReducer = (state = initialState, action) => {
     switch (action.type) {
         case incrementActionCreator:
-            return state + 1;
+            return state.value + 1;
         case decrementActionCreator:
-            return state - 1;
+            return state.value - 1;
         default:
-            return state;
+            return state.value;
     }
 }
 const store = createStore(counterReducer);
