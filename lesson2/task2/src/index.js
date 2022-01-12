@@ -25,6 +25,6 @@ store.subscribe(() => {
         return el === 1 ? "+1" : "-1";
       });
       const itog = store.getState().history.reduce((acc, el) => acc + el, 0);
-      resultElem.textContent =
+      resultBtn.textContent =
         state.length === 0 ? "" : `${state.join("")} = ${itog}`;
 })
