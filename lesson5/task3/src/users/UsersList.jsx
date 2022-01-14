@@ -1,31 +1,39 @@
 import React from "react";
-import User from './User.jsx';
-import Filter from '../Filter.jsx';
-import { connect } from 'react-redux';
-import { filterUsersSelector, filterListSelector, usersListSelector } from "./users.selector.js";
+import { connect } from "react-redux";
+import { filterList } from "./users.actions";
+import {
+  filterListSelectors,
+  filterTextSelectors,
+  userListSelectors,
+} from "./users.selectors";
+import Filter from "./Filter";
+import User from "./User";
 
+const UsersList = ({ users, filterText, filter }) => {
+ 
+  return (
+    <div>
+      <Filter filter={filter} filterText={filterText} count={users.length} />
+      <ul className="users">
+        {users.map((el) => (
+          <User key={el.id} {...el} />
+        ))}
+      </ul>
+    </div>
+  );
+};
 
-const UsersList = ({users, filterText, filter}) => {
-    return (
-        <div>
-            <Filter filter={filter} filterText={filterText} count={users.length}></Filter>
-            <ul className="users">
-                {users.map(user => (
-                    <User key={user.id} {...user}></User>
-                ))}
-            </ul>
-        </div>
-    );
-}
+const mapStateToProps = (state) => {
+  return {
+    users: filterListSelectors(state),
+    filterText: filterTextSelectors(state),
+  };
+};
 
-const mapState = state => {
-    return {
-        users: usersListSelector(state),
-        filterText: filterUsersSelector(state)
-    }
-}
 const mapDispatch = {
-    filter: filterListSelector
-}
-const connector = connect(mapState, mapDispatch)
+  filter: filterList,
+};
+
+const connector = connect(mapStateToProps, mapDispatch);
+
 export default connector(UsersList);

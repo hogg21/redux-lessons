@@ -1,14 +1,13 @@
-import { createSelector } from 'reselect';
-
-export const filterUsersSelector = state => {
-    return state.users.filterText
-}
-export const usersListSelector = state => {
+import { createSelector } from "reselect";
+export const userListSelectors=state=>{
     return state.users.usersList
 }
 
+export const filterTextSelectors=state=>{
+    return state.users.filterText
+}
 export const filterListSelectors = createSelector(
-    [usersListSelector, filterUsersSelector],
+    [userListSelectors, filterTextSelectors],
     (users, filterText) =>
     users.filter((user) =>
     user.name.toUpperCase().includes(filterText.toUpperCase())

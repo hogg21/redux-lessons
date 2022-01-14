@@ -1,10 +1,9 @@
-export const FILTER_USER = 'USERS/FILTER_USER';
+export const FILTER_LIST = "LIST/FILTER";
 
-export const filterUserByValue = (text) => {
-    return {
-        type: FILTER_USER,
-        payload: {
-            text
-        }
-    }
-}
+
+export const filterList = (text) => {
+  return {
+    type: FILTER_LIST,
+    payload:{text}
+  };
+};
