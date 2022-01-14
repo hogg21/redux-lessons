@@ -1,43 +1,48 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import User from './User';
-import Pagination from './Pagination.jsx';
-import { userListSelector, currentPageSelector } from '../users.selectors.js';
+import React from "react";
+import { connect } from "react-redux";
+import { leftNav, rightNav } from "../users.actions";
+import { currentPageSelectors, userListSelectors } from "../users.selectors";
+import Pagination from "./Pagination";
+import User from "./User";
 
-const ITEMS_PER_PAGE = 3;
-
-const UsersList = ({ users, goPrev, goNext, currentPage }) => {
-  const startIndex = currentPage * ITEMS_PER_PAGE;
-  const endIndex = startIndex + ITEMS_PER_PAGE;
-  const usersToRender = users.slice(startIndex, endIndex);
+const UsersList = ({ users, left, right,currentPage }) => {
+ const itemsPerPage=3;
+ 
+  const start = currentPage * itemsPerPage;
+  const usersToDisplay = users.slice(start, start + itemsPerPage);
 
   return (
     <div>
       <Pagination
-        goNext={goNext}
-        goPrev={goPrev}
+        goPrev={left}
+        goNext={right}
         currentPage={currentPage}
         totalItems={users.length}
-        itemsPerPage={ITEMS_PER_PAGE}
+        itemsPerPage={itemsPerPage}
       />
-
       <ul className="users">
-        {usersToRender.map(user => (
-          <User key={user.id} {...user} />
+        {usersToDisplay.map((el) => (
+          <User key={el.id} {...el} />
         ))}
       </ul>
     </div>
   );
 };
-const mapState = state => ({ users: userListSelector(state), currentPage: currentPageSelector(state) });
 
-const mapDispatch = {
-  goNext: goNext,
-  goPrev: goPrev,
+const mapStateToProps = state => {
+  return {
+    users: userListSelectors(state),
+    currentPage: currentPageSelectors(state),
+  };
 };
 
-const connector = connect(mapState, mapDispatch);
+const mapDispatch = (dispatch) => {
+  return {
+    left: () => dispatch(leftNav()),
+    right: () => dispatch(rightNav()),
+  };
+};
 
-const ConnectedUsersList = connector(UsersList);
+const connector = connect(mapStateToProps, mapDispatch);
 
-export default ConnectedUsersList;
+export default connector(UsersList);

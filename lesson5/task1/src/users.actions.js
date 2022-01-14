@@ -1,6 +1,14 @@
-export const GO_PREV = 'PAGINATION/GO_PREV';
-export const GO_NEXT = 'PAGINATION/GO_NEXT';
+export const RIGHT = "USER/RIGHT";
+export const LEFT = "USER/LEFT";
 
+export const rightNav = () => {
+  return {
+    type: RIGHT,
+  };
+};
 
-export const goNext = () => ({type: GO_NEXT})
-export const goPrev = () => ({type: GO_PREV})
+export const leftNav = () => {
+  return {
+    type: LEFT,
+  };
+};

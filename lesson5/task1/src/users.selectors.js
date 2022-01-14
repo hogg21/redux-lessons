@@ -1,7 +1,7 @@
-export const userListSelector = state => {
-    return state.users.usersList
+export const userListSelectors=state=>{
+    return state.usersList
 }
 
-export const currentPageListSelector = state => {
-    return state.users.currentPage
+export const currentPageSelectors=state=>{
+    return state.currentPage
 }

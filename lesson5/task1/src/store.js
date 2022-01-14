@@ -1,8 +1,5 @@
-import { createStore, combineReducers } from 'redux';
-import { usersReducer } from './users.reducer.js';
+import { createStore} from "redux";
+import pagesReducer from "./users.reducer.js";
 
-const appReducers = combineReducers({
-    users: usersReducer
-})
-const store = createStore(appReducers);
+const store = createStore(pagesReducer)
 export default store;
