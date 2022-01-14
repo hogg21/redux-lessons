@@ -1,5 +1,5 @@
 import users from './users.js';
-import { FILTER_LIST } from './users.action.js';
+import { FILTER_LIST } from './users.actions.js';
 
 const initialState = {
     filterText: "",
