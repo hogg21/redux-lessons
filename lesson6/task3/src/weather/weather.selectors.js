@@ -1,0 +1,1 @@
+export const citiesSelector = state => state.citiesData
