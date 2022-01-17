@@ -7,12 +7,12 @@ import SearchField from "./users/SearchField.jsx";
 
 const App = () => {
     return (
-        <div className="page">
-            <Provider store={store}>
+        <Provider store={store}>
+            <div className="page">
                 <UserInfo></UserInfo>
                 <SearchField></SearchField>
-            </Provider>
-        </div>
+            </div>
+        </Provider>
     );
 }
 
