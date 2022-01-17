@@ -1,19 +1,24 @@
 import React, { useEffect } from "react";
-import * as weatherActions from './weather.actions.js';
+import { useState } from "react";
 import { connect } from "react-redux";
+import { getWeatherData } from "./weather.actions.js";
 import { weatherSelector } from "./weather.selectors.js";
 
 
-const Weather = ({ сities, getWeatherData }) => {
-    useEffect(() => getWeatherData(), [])
+const Weather = ({ getWeatherData }) => {
+    const [weatherData, setWeatherData] = useState([])
+    console.log(weatherData);
+    useEffect(() => {
+        getWeatherData()
+    })
     return (
         <main className="weather">
             <h1 className="weather__title">Weather data</h1>
             <ul className="cities-list">
-                {сities.map(city => (
-                    <li key={city.id} className="city">
-                        <span className="city__name">{city.name}</span>
-                        <span className="city__temperature">{city.temperature} F</span>
+                {weatherData.map(countryWeather => (
+                    <li key={countryWeather.id} className="city">
+                        <span className="city__name">{countryWeather.name}</span>
+                        <span className="city__temperature">{countryWeather.temperature} F</span>
                     </li>
                 ))}
             </ul>
@@ -24,6 +29,6 @@ const mapState = state => ({
     cities: weatherSelector(state)
 })
 const mapDispatch = {
-    getWeatherData: weatherActions.getWeatherData
+    getWeatherData: getWeatherData
 }
 export default connect(mapState, mapDispatch)(Weather);

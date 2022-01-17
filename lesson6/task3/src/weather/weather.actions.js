@@ -12,10 +12,10 @@ export const citiesDataReceived = (citiesData) => {
   }
 }
 
-export const getWeatherData = () => {
-  return function (dispatch) {
-    GetWeatherData.then(citiesData => {
-      dispatch(citiesDataReceived(citiesData))
-    })
-  }
-}
+export const getWeatherData = () =>
+  // eslint-disable-next-line func-names
+  function (dispatch) {
+    GetWeatherData().then(citiesData => {
+      dispatch(citiesDataReceived(citiesData));
+    });
+  };
