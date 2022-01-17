@@ -1,1 +1,1 @@
-export const weatherSelector = state => state
+export const weatherSelector = state => state.citiesData
