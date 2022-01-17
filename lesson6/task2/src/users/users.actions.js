@@ -1,5 +1,5 @@
-export const SHOW_SPINNER = 'SHOW_SPINNER';
-export const USER_DATA_RECIVED = 'USER_DATA_RECIVED';
+export const SHOW_SPINNER = 'SPINNER/SHOW_SPINNER';
+export const USER_DATA_RECIVED = 'USERS/USER_DATA_RECIVED';
 import { getUserData } from './users.gateway.js';
 
 

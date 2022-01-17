@@ -5,6 +5,6 @@ export const getUserData = userName => {
         if (response.ok) {
             return response.json()
         }
-        throw new Error;
+        throw new Error(alert('3FIJIYIlFI'));
     })
 }
