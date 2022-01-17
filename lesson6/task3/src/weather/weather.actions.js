@@ -10,10 +10,10 @@ export const citiesDataRecived = citiesData => {
     }
 }
 
-export const getWeatherData = () =>
-  // eslint-disable-next-line func-names
-  function (dispatch) {
+export const getWeatherData = () => {
+  return function (dispatch) {
     GetWeatherData ().then(citiesData => {
       dispatch(citiesDataRecived(citiesData));
     });
   };
+}
