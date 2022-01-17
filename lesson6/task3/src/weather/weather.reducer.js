@@ -1,17 +1,9 @@
-import { CITIES_DATA_RECEIVED } from "./weather.actions";
-const initialState = {
-    citiesData: []
-}
-const weatherReducer = (state = initialState, action) => {
+const weatherReducer = (state = [], action) => {
     switch (action.type) {
-        case CITIES_DATA_RECEIVED: {
-            return {
-                ...state,
-                citiesData: action.payload.citiesData
-            }
-        }
-        default:
-            return state
+  
+  
+      default:
+        return state;
     }
-}
-export default weatherReducer;
+  };
+  export default weatherReducer;

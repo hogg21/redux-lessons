@@ -1,34 +1,39 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { connect } from "react-redux";
-import { getWeatherData } from "./weather.actions.js";
-import { weatherSelector } from "./weather.selectors.js";
+import { getWeatherData } from "./weather.actions";
 
 
 const Weather = ({ getWeatherData }) => {
-    const [weatherData, setWeatherData] = useState([])
-    console.log(weatherData);
-    useEffect(() => {
-        getWeatherData()
-    })
-    return (
-        <main className="weather">
-            <h1 className="weather__title">Weather data</h1>
-            <ul className="cities-list">
-                {weatherData.map(countryWeather => (
-                    <li key={countryWeather.id} className="city">
-                        <span className="city__name">{countryWeather.name}</span>
-                        <span className="city__temperature">{countryWeather.temperature} F</span>
-                    </li>
-                ))}
-            </ul>
-        </main>
-    );
-}
-const mapState = state => ({
-    cities: weatherSelector(state)
-})
+  const [weatherDatas, setWeatherData] = useState([]);
+
+  useEffect(() => {
+    getWeatherData().then((data) => setWeatherData(data));
+  }, []);
+  console.log(weatherDatas);
+  return (
+    <main className="weather">
+      <h1 className="weather__title">Weather data</h1>
+      <ul className="cities-list">
+        {weatherDatas.map((weatherData) => {
+          const { id, name, temperature } = weatherData;
+          return (
+            <li key={id} className="city">
+              <span className="city__name">{name}</span>
+              <span className="city__temperature">{`${temperature} F`}</span>
+            </li>
+          );
+        })}
+      </ul>
+    </main>
+  );
+};
+
+
 const mapDispatch = {
-    getWeatherData: getWeatherData
-}
-export default connect(mapState, mapDispatch)(Weather);
+  getWeatherData: getWeatherData,
+};
+
+const connector = connect(null, mapDispatch);
+export default connector(Weather);
